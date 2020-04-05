@@ -1,7 +1,7 @@
 class Maze {
   Obstacle[] obstacles;
   PassGate[] passGate;
-  
+
   //TODO: FIX MAZE GENERATION SO THAT ONLY ONE MAZE PER Y VALUE
 
 

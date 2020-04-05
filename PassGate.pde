@@ -4,7 +4,7 @@ class PassGate {
   int obs_length;
   int obs_width;
   int points;
-  
+
   boolean visible = true;
 
 
@@ -18,15 +18,15 @@ class PassGate {
 
 
   void display() {
-    if(DevMode){
-    fill(0);
-    stroke(0);
-  }else{    
-    fill(255);
-    stroke(255);
-  }
-    if(visible){
-    rect(xstart_pos, ystart_pos, obs_width, obs_length);
+    if (DevMode) {
+      fill(0);
+      stroke(0);
+    } else {    
+      fill(255);
+      stroke(255);
+    }
+    if (visible) {
+      rect(xstart_pos, ystart_pos, obs_width, obs_length);
     }
   }
 }

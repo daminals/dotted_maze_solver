@@ -14,10 +14,10 @@ void draw() {
   fill(255, 0, 0);
   stroke(255, 0, 0);
   ellipse(goal.x, goal.y, 10, 10);
-  
+
   textSize(32);
   fill(0);
-  text(test.gen, 445,490);
+  text(test.gen, 445, 490);
 
 
   if (test.allDotsDead()) {

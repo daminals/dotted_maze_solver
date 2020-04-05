@@ -26,7 +26,7 @@ class Brain {
   }
   //----------------------------------------------------------
   void mutate() {
-    
+
     float mutationRate = 0.2;
     if (test.sub50 || test.mutation_edits) {
       mutationRate=0.007;
