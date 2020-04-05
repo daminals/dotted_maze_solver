@@ -1,7 +1,7 @@
 # dot_gang_gang
 Genetic Algorithm + dots
 
-Heavily inspired by https://www.youtube.com/watch?v=BOZfhUcNiqk (Code Bullet's guided AI Dot game example with notable revisions):
+Heavily inspired by https://www.youtube.com/watch?v=BOZfhUcNiqk (Code Bullet's guided AI Dot game example) with notable revisions:
 
 •Randomly generated obstacles
 
