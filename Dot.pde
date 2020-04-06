@@ -3,6 +3,7 @@ class Dot {
   PVector vel;
   PVector acc;
   Brain brain;
+  //TODO: MAKE EVERY DOT HAVE A UNIQUE COLOR THAT GRADUALLY BECOME THE SAME COLOR BASED ON HOW DIFFERENT THEIR DNA IS
 
   boolean dead = false;
   boolean reachedGoal = false;
@@ -74,7 +75,6 @@ class Dot {
 
     if (reachedGoal) {
       fitness = 1.0/16.0 +(100000.0 - passgateGo)/(float)(brain.step * brain.step);
-      fitness *= 100;
       //TODO: ADD IN A TIMER AND INCREASE FITNESS BASED ON SHORTER TIME
     } else {
       float distanceToGoal = dist(pos.x, pos.y, goal.x, goal.y);
@@ -84,40 +84,25 @@ class Dot {
       if (dist(pos.x, pos.y, (goal.x), (goal.y))<10) {
         fitness *= 5;
       }
-      if (dead) {
-        fitness = (1.0)/((distanceToGoal)*((distanceToGoal)));
-        fitness /= 100;
-        if (test.better) {
-          fitness /= 1000;
-          if (touchedObs) {
-            fitness /= 1000;
-          }
-        }
-      }
-    }
-    if (pos.y>350) {
-      fitness /= pos.y;
-      if (touchedObs) {
-        fitness /= 1000;
-      }
-    } else if (pos.y<350) {
-      fitness *=50; 
-      if (pos.y<250) {
-        fitness *= 10; 
-        if (pos.y<150) {
-          fitness *= 9;
-          if (pos.y<100 ) {
-            fitness *= 2;
-            if (pos.y<75) {
-              fitness*=2;
-              if (pos.y<50) {
-                fitness *= 2;
-                if (pos.x<350 && pos.x>150) {
-                  fitness *=7;
-                  if (pos.x<300 && pos.x>200) {
-                    fitness *= 2;
-                    if (pos.x<275 && pos.x>225) {
-                      fitness *=2;
+      if (pos.y<350) {
+        fitness *=5; 
+        if (pos.y<250) {
+          fitness *= 5; 
+          if (pos.y<150) {
+            fitness *= 6;
+            if (pos.y<100 ) {
+              fitness *= 7;
+              if (pos.y<75) {
+                fitness*=5;
+                if (pos.y<50) {
+                  fitness *= 10;
+                  if (pos.x<350 && pos.x>150) {
+                    fitness *=10;
+                    if (pos.x<300 && pos.x>200) {
+                      fitness *= 10;
+                      if (pos.x<275 && pos.x>225) {
+                        fitness *=15;
+                      }
                     }
                   }
                 }
@@ -125,6 +110,22 @@ class Dot {
             }
           }
         }
+      }
+      if (dead) {
+        fitness = (1.0)/((distanceToGoal)*((distanceToGoal)));
+        fitness /= 100;
+        if (test.better) {
+          fitness /= 1000;
+          if (touchedObs) {
+            fitness /= 10000;
+          }
+        }
+      }
+    }
+    if (pos.y>350) {
+      fitness /= pos.y;
+      if (touchedObs) {
+        fitness /= 10000;
       }
     }
   }

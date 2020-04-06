@@ -21,6 +21,10 @@ class PassGate {
     if (DevMode) {
       fill(0);
       stroke(0);
+      textSize(12);
+      if (visible) {
+        text(points, xstart_pos, ystart_pos-2);
+      }
     } else {    
       fill(255);
       stroke(255);
