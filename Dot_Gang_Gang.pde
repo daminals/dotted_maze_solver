@@ -27,7 +27,13 @@ void draw() {
 
   textSize(32);
   fill(0);
-  text(test.gen, 445, 490);
+  if (test.gen<10) {
+    text("00" + test.gen, 435, 490);
+  } else if (test.gen<100) {
+    text("0" + test.gen, 435, 490);
+  } else {
+    text(test.gen, 435, 490);
+  }
 
 
   if (test.allDotsDead()) {

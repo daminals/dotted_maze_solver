@@ -82,7 +82,7 @@ class Dot {
       fitness *= 2*(passgateGo);
       fitness *= (600-pos.y)/100;
       if (dist(pos.x, pos.y, (goal.x), (goal.y))<10) {
-        fitness *= 100;
+        fitness *= 5;
       }
       if (dead) {
         fitness = (1.0)/((distanceToGoal)*((distanceToGoal)));
