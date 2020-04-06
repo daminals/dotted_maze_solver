@@ -152,7 +152,9 @@ class Population {
 
     if (dots[bestDot].reachedGoal) {
       minStep = dots[bestDot].brain.step;
-      println("step: ", minStep);
+      if (DevMode) {
+        println("step: ", minStep);
+      }
       better= true;
     }
   }

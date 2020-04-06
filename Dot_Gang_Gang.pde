@@ -9,6 +9,16 @@ void setup() {
   maze = new Maze(15);
 }
 
+void keyPressed() {
+  if (key== ' ') {
+    if (DevMode) {
+      DevMode = false;
+    } else {
+      DevMode = true;
+    }
+  }
+}
+
 void draw() {
   background(255);
   fill(255, 0, 0);
