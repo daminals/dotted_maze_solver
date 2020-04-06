@@ -84,10 +84,10 @@ class Population {
       fitnessSum += dots[i].fitness;
     }
     dotfitness[gen] = dots[bestDot].fitness;
-    if (gen > 5) {
+    if (gen > 10) {
       if (dotfitness[gen] == dotfitness[gen-1] || dotfitness[gen-1] == dotfitness[gen-2] || dotfitness[gen-2] == dotfitness[gen-3]) {
         mutation_edits = true;
-        if (dotfitness[gen] == dotfitness[gen-1] && dotfitness[gen-1] == dotfitness[gen-2] && dotfitness[gen-2] == dotfitness[gen-3] && dotfitness[gen-3] == dotfitness[gen-4]) {
+        if (dotfitness[gen] == dotfitness[gen-6] && dotfitness[gen-7] == dotfitness[gen-7] && dotfitness[gen-8] == dotfitness[gen-8] && dotfitness[gen-9] == dotfitness[gen-10]) {
           mutation_edits = false;
         }
       } else {

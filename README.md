@@ -5,7 +5,7 @@ Heavily inspired by https://www.youtube.com/watch?v=BOZfhUcNiqk (Code Bullet's g
 
 •Randomly generated obstacles
 
-•Developer Mode
+•Developer Mode (PRESS SPACE)
 
 •Revised Mutation Rate
 
