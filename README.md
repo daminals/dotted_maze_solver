@@ -1,4 +1,4 @@
-# dot_gang_gang
+# Dot_Gang_Gang
 Genetic Algorithm + dots
 
 Heavily inspired by https://www.youtube.com/watch?v=BOZfhUcNiqk (Code Bullet's guided AI Dot game example) with notable revisions:
