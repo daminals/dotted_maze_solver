@@ -72,7 +72,7 @@ class Dot {
 
 
   void calculateFitness() {
-
+    //TODO ADD IN A METHOD THAT ONLY TRACKS DISTANCE TO DOT'S X AXIS IF THEY ARE ABOVE 75 TO DISINCENTIVIZE GETTING STUCK AGAINST A WALL
     if (reachedGoal) {
       fitness = 1.0/16.0 +(100000.0 - passgateGo)/(float)(brain.step * brain.step);
       //TODO: ADD IN A TIMER AND INCREASE FITNESS BASED ON SHORTER TIME

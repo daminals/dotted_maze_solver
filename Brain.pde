@@ -26,14 +26,19 @@ class Brain {
   }
   //----------------------------------------------------------
   void mutate() {
+    //TODO: SPLIT INTO GROUPS ONE WITH HIGH MUTATION RATE AND ONE WITH LOW
 
     float mutationRate = 0.2;
-    if (test.sub50 || test.mutation_edits) {
+    if (test.gen<4) {
+      mutationRate=0.75;
+    }
+    if (test.sub75 || test.mutation_edits) {
       mutationRate=0.007;
     }
     if (test.better) {
-      mutationRate=0.005;
+      mutationRate=0.015;
     }
+
     for (int i=0; i<directions.length; i++) {
       float rand = random(1);
       if (rand < mutationRate) {

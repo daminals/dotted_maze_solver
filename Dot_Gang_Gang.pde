@@ -24,6 +24,11 @@ void draw() {
   fill(255, 0, 0);
   stroke(255, 0, 0);
   ellipse(goal.x, goal.y, 10, 10);
+  if (DevMode) {
+    rect(0, 75, 500, 3);
+    rect(0, 100, 500, 3);
+    rect(0, 50, 500, 3);
+  }
 
   textSize(32);
   fill(0);

@@ -8,7 +8,7 @@ class Population {
 
   int minStep = 400;
   boolean better = false;
-  boolean sub50, mutation_edits = false;
+  boolean sub75, mutation_edits = false;
 
   Population(int size) {
     dots = new Dot[size];
@@ -89,6 +89,7 @@ class Population {
         mutation_edits = true;
         if (dotfitness[gen] == dotfitness[gen-6] && dotfitness[gen-7] == dotfitness[gen-7] && dotfitness[gen-8] == dotfitness[gen-8] && dotfitness[gen-9] == dotfitness[gen-10]) {
           mutation_edits = false;
+          dots[0].fitness *= 100;
         }
       } else {
         mutation_edits = false;
@@ -122,7 +123,7 @@ class Population {
   void setBestDot() {
 
     float max = 0;
-    int maxIndex =0;
+    int maxIndex = 0;
     for (int i=0; i<dots.length; i++) {
       if (dots[i].fitness > max) {
         max = dots[i].fitness;
@@ -131,16 +132,16 @@ class Population {
     }
     bestDot = maxIndex;
 
-    if (dots[bestDot].pos.y<50) {
-      sub50 = true;
+    if (dots[bestDot].pos.y<75) {
+      sub75 = true;
     } else {
-      sub50=false;
+      sub75=false;
     }
 
 
 
     if (DevMode && !dots[bestDot].reachedGoal) {
-      println("sub50: ", sub50);
+      println("sub75: ", sub75);
       println("mutation_edits: ", mutation_edits);
     }
 
