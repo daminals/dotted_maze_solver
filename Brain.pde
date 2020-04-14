@@ -1,5 +1,5 @@
 class Brain {
-
+  float CurrentMutationRate = 0.2;
   PVector[] directions;
   int step = 0;
 
@@ -38,6 +38,7 @@ class Brain {
     if (test.better) {
       mutationRate=0.015;
     }
+    CurrentMutationRate = mutationRate;
 
     for (int i=0; i<directions.length; i++) {
       float rand = random(1);
@@ -45,6 +46,7 @@ class Brain {
         //set this direction as a random direction
         float randomAngle = random(2*PI);
         directions[i] = PVector.fromAngle(randomAngle);
+       
       }
     }
   }

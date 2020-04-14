@@ -2,11 +2,14 @@ Population test;
 Maze maze;
 PVector goal = new PVector(250, 20);
 boolean DevMode = false;
+boolean DarkMode = true;
+
+//TODO: ADD IN THE BEST DOT'S COLOR IN THE CORNER
 
 void setup() {
   size(500, 500);
   test = new Population(1000);
-  maze = new Maze(15);
+  maze = new Maze(5);
 }
 
 void keyPressed() {
@@ -17,10 +20,21 @@ void keyPressed() {
       DevMode = true;
     }
   }
+    if (key == TAB) {
+    if (DarkMode) {
+      DarkMode = false;
+    } else {
+      DarkMode = true;
+    }
+  }
 }
 
 void draw() {
-  background(255);
+  if (DarkMode) {
+    background(0);
+  } else {
+    background(255);
+  }
   fill(255, 0, 0);
   stroke(255, 0, 0);
   ellipse(goal.x, goal.y, 10, 10);
@@ -31,7 +45,8 @@ void draw() {
   }
 
   textSize(32);
-  fill(0);
+  if(DarkMode){fill(255);}else{
+  fill(0);}
   if (test.gen<10) {
     text("00" + test.gen, 435, 490);
   } else if (test.gen<100) {

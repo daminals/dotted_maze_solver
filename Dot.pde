@@ -8,6 +8,11 @@ class Dot {
   boolean dead = false;
   boolean reachedGoal = false;
   boolean isBest = false;
+  color dotColor;
+  int rgb [] = new int[3];
+  int setColorChange;
+  
+
 
   float fitness = 0;
   float passgateGo = 0;
@@ -24,9 +29,12 @@ class Dot {
       fill(0, 255, 255);
       stroke(0, 255, 255);
       ellipse(pos.x, pos.y, 4, 4);
-    } else { 
-      fill(0);
-      stroke(0, 0, 0);
+    } else {       
+      if (dotColor == color(0, 0, 0)) {
+        dotColor = color((int) random(15, 240), (int) random(15, 240), (int) random(15, 240));
+      }
+      fill(dotColor);
+      stroke(dotColor);
 
       ellipse(pos.x, pos.y, 4, 4);
     }
@@ -72,7 +80,6 @@ class Dot {
 
 
   void calculateFitness() {
-    //TODO ADD IN A METHOD THAT ONLY TRACKS DISTANCE TO DOT'S X AXIS IF THEY ARE ABOVE 75 TO DISINCENTIVIZE GETTING STUCK AGAINST A WALL
     if (reachedGoal) {
       fitness = 1.0/16.0 +(100000.0 - passgateGo)/(float)(brain.step * brain.step);
       //TODO: ADD IN A TIMER AND INCREASE FITNESS BASED ON SHORTER TIME
@@ -80,37 +87,29 @@ class Dot {
       float distanceToGoal = dist(pos.x, pos.y, goal.x, goal.y);
       fitness = 1.0/(distanceToGoal * (distanceToGoal));
       fitness *= 2*(passgateGo);
-      fitness *= (600-pos.y)/100;
+      fitness *= (600-pos.y);
       if (dist(pos.x, pos.y, (goal.x), (goal.y))<10) {
         fitness *= 5;
       }
       if (pos.y<350) {
-        fitness *=5; 
-        if (pos.y<250) {
-          fitness *= 5; 
-          if (pos.y<150) {
-            fitness *= 6;
-            if (pos.y<100 ) {
-              fitness *= 7;
-              if (pos.y<75) {
-                fitness*=5;
-                if (pos.y<50) {
-                  fitness *= 10;
-                  if (pos.x<350 && pos.x>150) {
-                    fitness *=10;
-                    if (pos.x<300 && pos.x>200) {
-                      fitness *= 10;
-                      if (pos.x<275 && pos.x>225) {
-                        fitness *=15;
-                      }
-                    }
-                  }
+        fitness *= 10000*(600-(pos.y)); 
+        if (pos.y<100) {
+          fitness *= 1000*(600-(pos.y));
+          if (pos.y<50) {
+            fitness *= 1000*(600-(pos.y));
+            if (pos.x<350 && pos.x>150) {
+              fitness *=10;
+              if (pos.x<300 && pos.x>200) {
+                fitness *= 10;
+                if (pos.x<275 && pos.x>225) {
+                  fitness *=15;
                 }
               }
             }
           }
         }
       }
+
       if (dead) {
         fitness = (1.0)/((distanceToGoal)*((distanceToGoal)));
         fitness /= 100;

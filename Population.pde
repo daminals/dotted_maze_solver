@@ -12,8 +12,22 @@ class Population {
 
   Population(int size) {
     dots = new Dot[size];
+    int ColorChangeInt = 1;
     for (int i = 0; i<size; i++) {
       dots[i] = new Dot();
+      dots[i].setColorChange = ColorChangeInt;
+      ColorChangeInt+=1;
+      if (ColorChangeInt == 6) {
+        ColorChangeInt=1;
+      }
+
+
+      if (gen == 1) {
+        dots[i].rgb[0] = (int) random(75, 225);
+        dots[i].rgb[1] = (int) random(75, 225);
+        dots[i].rgb[2] = (int) random(75, 225);
+        dots[i].dotColor = color(dots[i].rgb[0], dots[i].rgb[1], dots[i].rgb[2]);
+      }
     }
   }
 
@@ -72,6 +86,69 @@ class Population {
 
       //get baby from the parent
       newDots[i] = parent.gimmeBaby();
+
+      //TODO: SET DOT COLORS AND THEN CHANGE BASED ON ITERATION NUMBER AHHHHH
+      // ACTUALLY MIGHT NOT WORK SINCE ITERATION NUMBER IS BIGGER THAN 255, WHAT NEEDS TO 
+      //HAPPEN IS IT GOES BY CATEGORY 1 BY 1 BREAKING IT UP INTO 2 GROUPS, ODD AND EVEN (SUBTRACT && ADD)
+      //AND THEN BROKENN UP AGAIN 3 SETS INTO RED GREEN BLUE CATEGORIES
+
+      //---COLOR ALGORITHM-------------
+
+      if (!dots[bestDot].reachedGoal) {
+        if (!(newDots[i].rgb[0] < 30 && newDots[i].rgb[0] > 230)) {
+          newDots[i].rgb[0] = (int)random(parent.rgb[0]+(100*newDots[i].brain.CurrentMutationRate), parent.rgb[0]-(100*newDots[i].brain.CurrentMutationRate));
+        } else { 
+          if (newDots[i].rgb[0]<30) {
+            newDots[i].rgb[0]+= 35;
+          } else {
+            newDots[i].rgb[0]-=35;
+          }
+        }
+        if (!(newDots[i].rgb[1] < 30 && newDots[i].rgb[1] > 230)) {
+          newDots[i].rgb[1] = (int)random(parent.rgb[1]+(100*newDots[i].brain.CurrentMutationRate), parent.rgb[1]-(100*newDots[i].brain.CurrentMutationRate));
+        } else { 
+          if (newDots[i].rgb[1]<75) {
+            newDots[i].rgb[1]+= 15;
+          } else {
+            newDots[i].rgb[1]-=35;
+          }
+        }
+
+        if (!(newDots[i].rgb[2] < 30 && newDots[i].rgb[2] > 230)) {
+          newDots[i].rgb[2] = (int)random(parent.rgb[2]+(100*newDots[i].brain.CurrentMutationRate), parent.rgb[2]-(100*newDots[i].brain.CurrentMutationRate));
+        } else { 
+          if (newDots[i].rgb[2]<75) {
+            newDots[i].rgb[2] += 35;
+          } else {
+            newDots[i].rgb[2] -= 35;
+          }
+        }
+      } else {
+        newDots[i].rgb = parent.rgb;
+        if ((random(0, 100)<=(100*newDots[i].brain.CurrentMutationRate))||((newDots[i].rgb[0] < 30) && (newDots[i].rgb[1] < 30) && (newDots[i].rgb[2] < 30)) ||  ((newDots[i].rgb[0]-newDots[i].rgb[1]<15)||((newDots[i].rgb[1]-newDots[i].rgb[0]<15)))) {
+          int temp = (int)random(1, 3);
+          if (temp == 1) {
+            newDots[i].rgb[0] = parent.rgb[0] + (int)random(-3, 3);
+            newDots[i].rgb[1] = parent.rgb[1];
+            newDots[i].rgb[2] = parent.rgb[2] ;
+          } else if (temp ==2) {
+            newDots[i].rgb[0] = parent.rgb[0] ;
+            newDots[i].rgb[1] = parent.rgb[1] + (int)random(-3, 3);
+            newDots[i].rgb[2] = parent.rgb[2] ;
+          } else {
+            newDots[i].rgb[0] = parent.rgb[0] ;
+            newDots[i].rgb[1] = parent.rgb[1] ;
+            newDots[i].rgb[2] = parent.rgb[2] + (int)random(-3, 3);
+          }
+        }
+      }
+
+
+    
+
+      //----------------------
+
+      newDots[i].dotColor = color(newDots[i].rgb[0], newDots[i].rgb[1], newDots[i].rgb[2]);
     }
 
     dots = newDots.clone();

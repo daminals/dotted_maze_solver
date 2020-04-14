@@ -19,15 +19,25 @@ class PassGate {
 
   void display() {
     if (DevMode) {
-      fill(0);
-      stroke(0);
+      if (DarkMode) {
+        fill(255);
+        stroke(255);
+      } else {
+        fill(0);
+        stroke(0);
+      }
       textSize(12);
       if (visible) {
         text(points, xstart_pos, ystart_pos-2);
       }
-    } else {    
-      fill(255);
-      stroke(255);
+    } else {
+      if (DarkMode) {
+        fill(0);
+        stroke(0);
+      } else {
+        fill(255);
+        stroke(255);
+      }
     }
     if (visible) {
       rect(xstart_pos, ystart_pos, obs_width, obs_length);
