@@ -99,18 +99,18 @@ class Population {
           newDots[i].rgb[0] = (int)random(parent.rgb[0]+(100*newDots[i].brain.CurrentMutationRate), parent.rgb[0]-(100*newDots[i].brain.CurrentMutationRate));
         } else { 
           if (newDots[i].rgb[0]<30) {
-            newDots[i].rgb[0]+= 35;
+            newDots[i].rgb[0]+= 50;
           } else {
-            newDots[i].rgb[0]-=35;
+            newDots[i].rgb[0]-=15;
           }
         }
         if (!(newDots[i].rgb[1] < 30 && newDots[i].rgb[1] > 230)) {
           newDots[i].rgb[1] = (int)random(parent.rgb[1]+(100*newDots[i].brain.CurrentMutationRate), parent.rgb[1]-(100*newDots[i].brain.CurrentMutationRate));
         } else { 
           if (newDots[i].rgb[1]<75) {
-            newDots[i].rgb[1]+= 15;
+            newDots[i].rgb[1]+= 50;
           } else {
-            newDots[i].rgb[1]-=35;
+            newDots[i].rgb[1]-=15;
           }
         }
 
@@ -118,9 +118,9 @@ class Population {
           newDots[i].rgb[2] = (int)random(parent.rgb[2]+(100*newDots[i].brain.CurrentMutationRate), parent.rgb[2]-(100*newDots[i].brain.CurrentMutationRate));
         } else { 
           if (newDots[i].rgb[2]<75) {
-            newDots[i].rgb[2] += 35;
+            newDots[i].rgb[2] += 50;
           } else {
-            newDots[i].rgb[2] -= 35;
+            newDots[i].rgb[2] -= 15;
           }
         }
       } else {
@@ -140,11 +140,24 @@ class Population {
             newDots[i].rgb[1] = parent.rgb[1] ;
             newDots[i].rgb[2] = parent.rgb[2] + (int)random(-3, 3);
           }
+
+          if ((newDots[i].rgb[0] > (newDots[i].rgb[1]-10) && (newDots[i].rgb[0]<newDots[i].rgb[1]+10))) {
+            if ((newDots[i].rgb[2] > newDots[i].rgb[2]-10)&&(newDots[i].rgb[2]<newDots[i].rgb[2]+10)) {
+              int tempRandom = (int)random(1, 3);
+              if (tempRandom == 1) {
+                newDots[i].rgb[0] += 30;
+              } else if (tempRandom ==2) {
+                newDots[i].rgb[1] += 30;
+              } else {
+                newDots[i].rgb[2] += 30;
+              }
+            }
+          }
         }
       }
 
 
-    
+
 
       //----------------------
 
@@ -154,6 +167,11 @@ class Population {
     dots = newDots.clone();
     gen++;
   }
+  //----------------------------------------------------------
+  Dot best() {
+    return dots[bestDot];
+  }
+
   //----------------------------------------------------------
   void calculateFitnessSum() {
     fitnessSum = 0;

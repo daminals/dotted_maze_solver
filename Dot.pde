@@ -4,6 +4,8 @@ class Dot {
   PVector acc;
   Brain brain;
   //TODO: MAKE EVERY DOT HAVE A UNIQUE COLOR THAT GRADUALLY BECOME THE SAME COLOR BASED ON HOW DIFFERENT THEIR DNA IS
+  // ^above finished but it could be tremendously improved
+  // Ban dots from having red green blue values that are close to each other
 
   boolean dead = false;
   boolean reachedGoal = false;
@@ -11,7 +13,9 @@ class Dot {
   color dotColor;
   int rgb [] = new int[3];
   int setColorChange;
-  
+
+  //DOT TIMER
+  int timer = 1;
 
 
   float fitness = 0;
@@ -56,7 +60,6 @@ class Dot {
 
   void update() {
 
-
     if (!dead && !reachedGoal) {
       move();
       if (pos.x<2|| pos.y<2 || pos.x>width-2 || pos.y>height-2) {
@@ -75,7 +78,11 @@ class Dot {
         maze.passGate[i].visible = false;
       }
     }
+
+    timer += 1;
   }
+
+
 
 
 
@@ -83,6 +90,7 @@ class Dot {
     if (reachedGoal) {
       fitness = 1.0/16.0 +(100000.0 - passgateGo)/(float)(brain.step * brain.step);
       //TODO: ADD IN A TIMER AND INCREASE FITNESS BASED ON SHORTER TIME
+      fitness *= (1/timer);
     } else {
       float distanceToGoal = dist(pos.x, pos.y, goal.x, goal.y);
       fitness = 1.0/(distanceToGoal * (distanceToGoal));
