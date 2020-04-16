@@ -5,7 +5,6 @@ class Dot {
   Brain brain;
   //TODO: MAKE EVERY DOT HAVE A UNIQUE COLOR THAT GRADUALLY BECOME THE SAME COLOR BASED ON HOW DIFFERENT THEIR DNA IS
   // ^above finished but it could be tremendously improved
-  // Ban dots from having red green blue values that are close to each other
 
   boolean dead = false;
   boolean reachedGoal = false;
@@ -67,6 +66,10 @@ class Dot {
       } else if (dist(pos.x, pos.y, goal.x, goal.y)<5) {
         //if reached goal
         reachedGoal = true;
+        Rank += 1;
+        if (Rank ==1) {
+          victory.play();
+        }
       }
     }
     for (int i=0; i<maze.obstacles.length; i++) {
@@ -89,7 +92,6 @@ class Dot {
   void calculateFitness() {
     if (reachedGoal) {
       fitness = 1.0/16.0 +(100000.0 - passgateGo)/(float)(brain.step * brain.step);
-      //TODO: ADD IN A TIMER AND INCREASE FITNESS BASED ON SHORTER TIME
       fitness *= (1/timer);
     } else {
       float distanceToGoal = dist(pos.x, pos.y, goal.x, goal.y);

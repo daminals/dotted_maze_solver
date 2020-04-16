@@ -1,8 +1,17 @@
+import processing.sound.*;
+SoundFile victory;
+
+//TODO: MAKE VICTORY NOISE PLAY AFTER TOUCHING RED DOT
+
+
 Population test;
 Maze maze;
 PVector goal = new PVector(250, 20);
 boolean DevMode = false;
 boolean DarkMode = true;
+boolean played = false;
+
+int Rank=0;
 
 
 
@@ -10,7 +19,8 @@ boolean DarkMode = true;
 void setup() {
   size(500, 500);
   test = new Population(1000);
-  maze = new Maze(15);
+  maze = new Maze(5);
+  victory = new SoundFile(this, "win.wav");
 }
 
 void keyPressed() {
@@ -62,6 +72,21 @@ void draw() {
     text(test.gen, 435, 490);
   }
 
+
+  if (test.allDotsDead()) {
+    //genetic algorithm
+    test.calculateFitness();
+    test.NaturalSelection();
+    test.mutateDemBabies();
+  } else {
+  }
+  maze.update();
+
+  if (DarkMode) {
+    fill(255);
+  } else {
+    fill(0);
+  }  
   textSize(15);
   noStroke();
   text("Best Dot", 2, 12);  
@@ -86,14 +111,6 @@ void draw() {
   ellipse(30, 33, 30, 30);
 
 
-  if (test.allDotsDead()) {
-    //genetic algorithm
-    test.calculateFitness();
-    test.NaturalSelection();
-    test.mutateDemBabies();
-  } else {
-  }
-  maze.update();
   test.update();
   test.show();
 }  

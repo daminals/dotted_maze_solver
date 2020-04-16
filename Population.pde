@@ -67,7 +67,8 @@ class Population {
     for (int i=0; i<maze.obstacles.length; i++) {
       maze.passGate[i].visible = true;
     }
-
+    
+    Rank=0;
     return true;
   }
   //----------------------------------------------------------
@@ -86,11 +87,6 @@ class Population {
 
       //get baby from the parent
       newDots[i] = parent.gimmeBaby();
-
-      //TODO: SET DOT COLORS AND THEN CHANGE BASED ON ITERATION NUMBER AHHHHH
-      // ACTUALLY MIGHT NOT WORK SINCE ITERATION NUMBER IS BIGGER THAN 255, WHAT NEEDS TO 
-      //HAPPEN IS IT GOES BY CATEGORY 1 BY 1 BREAKING IT UP INTO 2 GROUPS, ODD AND EVEN (SUBTRACT && ADD)
-      //AND THEN BROKENN UP AGAIN 3 SETS INTO RED GREEN BLUE CATEGORIES
 
       //---COLOR ALGORITHM-------------
 
