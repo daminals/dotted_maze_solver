@@ -1,8 +1,6 @@
 # Dot_Gang_Gang
 Genetic Algorithm + dots
 
-Based on https://www.youtube.com/watch?v=BOZfhUcNiqk (Code Bullet's guided AI Dot game example) with notable revisions:
-
 •Randomly generated obstacles
 
 •Developer Mode (PRESS SPACE)
