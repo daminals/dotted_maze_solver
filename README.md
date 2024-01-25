@@ -1,4 +1,4 @@
-# Dot_Gang_Gang
+# Dotted Maze Solver
 Genetic Algorithm + dots
 
 •Randomly generated obstacles
